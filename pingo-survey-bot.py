@@ -197,7 +197,10 @@ if __name__ == '__main__':
     s = prepare_settings()
     print_options(s)
     while True:
-        choice = input('\nChoice (1-7): ')
+        try:
+            choice = input('\nChoice (1-7): ')
+        except KeyboardInterrupt:
+            sys.exit(0)
         print()
         if choice == '1':
             set_session_number(s)
