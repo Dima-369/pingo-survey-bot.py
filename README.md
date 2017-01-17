@@ -12,7 +12,7 @@ Clone the repository and install the dependencies:
 $ pip3 install requests recordclass PyYaml
 ```
 
-Now you can run the script to set all options, they are stored in prefs.yaml by default.
+Now you can run the script to set all options, they are stored in `prefs.yaml` by default.
 
 ## Screenshots
 
