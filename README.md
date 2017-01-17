@@ -13,3 +13,7 @@ $ pip3 install requests recordclass PyYaml
 ```
 
 Now you can run the script to set all options, they are stored in prefs.yaml by default.
+
+## Screenshots
+
+![](https://github.com/Gira-X/pingo-survey-bot.py/raw/master/screenshots/1.png)
