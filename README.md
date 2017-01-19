@@ -17,3 +17,4 @@ Now you can run the script to set all options, they are stored in `prefs.yaml` b
 ## Screenshots
 
 ![](https://github.com/Gira-X/pingo-survey-bot.py/raw/master/screenshots/1.png)
+![](https://github.com/Gira-X/pingo-survey-bot.py/raw/master/screenshots/2.png)
