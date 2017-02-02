@@ -16,7 +16,7 @@ Now you can run the script to set all options, they are stored in `prefs.yaml` b
 
 ## Options on running the script
 
-```bash
+```json
 1: Text/TagCloud survey:                    shrek'd
 2: Single/Multiple Choice survey (0-max):   1
 3: Numeric survey:                          42
