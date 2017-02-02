@@ -153,34 +153,33 @@ def send(c):
     authenticity_token = re.findall('(?<=content=").*(?=" name)', r.text)[1]
     pid = re.findall(
         '(?<=<input id="id" name="id" type="hidden" value=").*(?=")', r.text)[0]
-    print('authenticity_token: {}  --  id: {}'
-          .format(authenticity_token, pid))
+    print('  authenticity_token: {}\n  id: {}'.format(authenticity_token, pid))
     payload = get_basic_payload(authenticity_token, pid)
 
     is_numeric = 'required="required" step="0.00001"' in r.text
     if is_numeric:
         payload['option'] = c.numeric
-        print("Detected Numeric survey!")
+        print(" sending to a numeric survey...", end='')
     else:
         # need to fetch option[] ids from the radio values for POSTing
         o = re.findall('(?<=name="option" type="radio" value=").*(?=")', r.text)
         if len(o) != 0:
             payload['option[]'] = o[c.choice]
-            print("Detected single choice survey!")
+            print(" sending to single/multiple choice survey...", end='')
         else:
             payload['option[]'] = c.text
-            print("Detected text survey!")
+            print("  sending to a text/tagcloud survey...", end='')
 
     def post(i):
         """Post the vote packet and print the passed ID once done"""
         requests.post('http://pingo.upb.de/vote',
                       headers=generate_fake_headers(c), data=payload,
                       stream=True)
-        print(",{},".format(i), end='')
 
+    print('  ', end='')
     with futures.ThreadPoolExecutor(max_workers=100) as executor:
         executor.map(post, range(c.amount))
-    print("\n")
+    print("done!\n")
 
 
 def print_options(c):
