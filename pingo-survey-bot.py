@@ -186,14 +186,14 @@ def print_options(c):
     def l(i):
         return i.ljust(40)
 
-    print('1 - {} {}'.format(l('Text/TagCloud survey: '), c.text))
-    print('2 - {} {}'.format(l('Single/Multiple Choice survey (0-max):'),
+    print('1: {} {}'.format(l('Text/TagCloud survey: '), c.text))
+    print('2: {} {}'.format(l('Single/Multiple Choice survey (0-max):'),
         c.choice))
-    print('3 - {} {}'.format(l('Numeric survey: '), c.numeric))
-    print('4 - {} {}'.format(l('The amount of times to send: '), c.amount))
-    print('\n5 - {} {}'.format(l('Access number'), c.session))
-    print('6 - Start sending!')
-    print('7 - Exit')
+    print('3: {} {}'.format(l('Numeric survey: '), c.numeric))
+    print('4: {} {}'.format(l('The amount of times to send: '), c.amount))
+    print('\n5: {} {}'.format(l('Access number'), c.session))
+    print('6: Start sending!')
+    print('7: Exit')
 
 
 if __name__ == '__main__':
