@@ -23,15 +23,19 @@ def set_session_number(c):
         c.session = int(new)
         persist_config_to_filesystem(c)
     else:
-        print('Not an integer! Session number not changed!')
+        print('Not an integer! Session number not changed!\n')
 
 
 def set_text_to_send(c):
     """Print the current text and change it to the user input"""
     print('Current text which will be sent: {}'.format(c.text))
     print('New: ', end='')
-    c.text = input('')
-    persist_config_to_filesystem(c)
+    t = input('')
+    if t is "":
+        print('Empty text not permitted!\n')
+    else:
+        c.text = t
+        persist_config_to_filesystem(c)
 
 
 def set_multiple_choice_option(c):
@@ -43,7 +47,7 @@ def set_multiple_choice_option(c):
         c.choice = int(new)
         persist_config_to_filesystem(c)
     else:
-        print('Not an integer! Multiple choice option not changed!')
+        print('Not an integer! Multiple choice option not changed!\n')
 
 
 def set_send_amount(c):
@@ -55,7 +59,7 @@ def set_send_amount(c):
         c.amount = int(new)
         persist_config_to_filesystem(c)
     else:
-        print('Not an integer! Send amount not changed!')
+        print('Not an integer! Send amount not changed!\n')
 
 
 def set_numeric_value(c):
@@ -66,7 +70,7 @@ def set_numeric_value(c):
         c.numeric = int(new)
         persist_config_to_filesystem(c)
     else:
-        print('Not an integer! Numeric value not changed!')
+        print('Not an integer! Numeric value not changed!\n')
 
 
 def get_default_config():
@@ -181,16 +185,16 @@ def send(c):
 
 def print_options(c):
     def l(i):
-        """Justify the passed string with ljust"""
-        return i.ljust(22)
+        return i.ljust(40)
 
-    print('1 - {} - {}'.format(l('session number'), c.session))
-    print('2 - {} - {}'.format(l('text to send'), c.text))
-    print('3 - {} - {}'.format(l('single choice (0-max)'), c.choice))
-    print('4 - {} - {}'.format(l('numeric value'), c.numeric))
-    print('5 - {} - {}'.format(l('send amount'), c.amount))
-    print('6 - start sending!')
-    print('7 - exit')
+    print('1 - {} {}'.format(l('Text/TagCloud survey: '), c.text))
+    print('2 - {} {}'.format(l('Single/Multiple Choice survey (0-max):'),
+        c.choice))
+    print('3 - {} {}'.format(l('Numeric survey: '), c.numeric))
+    print('4 - {} {}'.format(l('The amount of times to send: '), c.amount))
+    print('\n5 - {} {}'.format(l('Access number'), c.session))
+    print('6 - Start sending!')
+    print('7 - Exit')
 
 
 if __name__ == '__main__':
@@ -203,19 +207,19 @@ if __name__ == '__main__':
             sys.exit(0)
         print()
         if choice == '1':
-            set_session_number(s)
-            print_options(s)
-        elif choice == '2':
             set_text_to_send(s)
             print_options(s)
-        elif choice == '3':
+        elif choice == '2':
             set_multiple_choice_option(s)
             print_options(s)
-        elif choice == '4':
+        elif choice == '3':
             set_numeric_value(s)
             print_options(s)
-        elif choice == '5':
+        elif choice == '4':
             set_send_amount(s)
+            print_options(s)
+        elif choice == '5':
+            set_session_number(s)
             print_options(s)
         elif choice == '6':
             send(s)
