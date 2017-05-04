@@ -9,7 +9,7 @@ from concurrent import futures
 import requests
 from recordclass import recordclass
 
-# all tuple values are integers
+# all tuple values are integers, except [text]
 Config = recordclass('Config', 'session text choice amount numeric')
 prefs_file = "prefs.yaml"
 
